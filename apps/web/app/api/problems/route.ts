@@ -1,5 +1,9 @@
-import { prisma } from 'database'
+
+import { PrismaClient } from 'database'
 import { NextResponse } from 'next/server'
+
+// Create local prisma instance
+const prisma = new PrismaClient()
 
 export async function GET() {
   try {
@@ -21,6 +25,7 @@ export async function GET() {
 
     return NextResponse.json(problems)
   } catch (error) {
+    console.error('Error fetching problems:', error)
     return NextResponse.json({ error: 'Failed to fetch problems' }, { status: 500 })
   }
 }

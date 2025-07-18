@@ -2,13 +2,17 @@
   "name": "with-tailwind",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
     "check-types": "turbo run check-types",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "turbo run db:generate",
+    "tsc": "tsc"
   },
   "devDependencies": {
+    "@types/node": "^22.15.30",
+    "flag": "^5.0.1",
     "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "turbo": "^2.5.5"

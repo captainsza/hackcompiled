@@ -1,5 +1,8 @@
-import { prisma } from 'database'
+
+import { PrismaClient } from 'database'
 import { NextResponse } from 'next/server'
+
+const prisma = new PrismaClient()
 
 export async function GET(
   request: Request,
@@ -25,6 +28,7 @@ export async function GET(
 
     return NextResponse.json(problem)
   } catch (error) {
+    console.error('Error fetching problem:', error)
     return NextResponse.json({ error: 'Failed to fetch problem' }, { status: 500 })
   }
 }

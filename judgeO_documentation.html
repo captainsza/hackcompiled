@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge0 Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        #container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            display: flex;
+        }
+        #sidebar {
+            width: 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #main {
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #sidebar a {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        #sidebar a:hover {
+            background-color: #ddd;
+            color: #666;
+        }
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #sidebar ul li {
+            margin-bottom: 5px;
+        }
+        #main h1, #main h2, #main h3 {
+            color: #333;
+        }
+        #main p {
+            color: #666;
+        }
+        #main a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        #main a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="sidebar">
+            <a href="https://www.judge0.com">Judge0</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#get-started">Get Started</a></li>
+                <li><a href="#version">Version</a></li>
+                <li><a href="#authentication">Authentication</a></li>
+                <li><a href="#authorization">Authorization</a></li>
+                <li><a href="#submissions">Submissions</a></li>
+                <li><a href="#system-info">System Info</a></li>
+                <li><a href="#configuration">Configuration Info</a></li>
+                <li><a href="#license">License</a></li>
+            </ul>
+        </div>
+        <div id="main">
+            <h1>Judge0 Documentation</h1>
+
+            <h2 id="about">About</h2>
+            <p>Judge0 is a robust, scalable, and open-source online code execution system. It can be used to build a wide range of applications that require online code execution features, such as competitive programming platforms, e-learning platforms, candidate assessment and recruitment platforms, online code editors, online IDEs, and more.</p>
+            <p>In our research paper <em>Robust and Scalable Online Code Execution System</em>, we present Judge0's modern modular architecture that can be easily deployed and scaled. We discuss its design, address various challenges in building such systems, and compare it with other available online code execution systems and online judge systems.</p>
+            <p>To see Judge0 in action, try <a href="https://ide.judge0.com">Judge0 IDE</a>, our free and open-source online code editor. You can also use a dummy client to explore and test most of Judge0's features.</p>
+
+            <h2 id="features">Features</h2>
+            <ul>
+                <li>Quick and easy installation</li>
+                <li>Rich and verbose API documentation</li>
+                <li>Scalable architecture</li>
+                <li>Sandboxed compilation and execution</li>
+                <li>Support for over 60 programming languages</li>
+                <li>Compilation and execution of multi-file programs</li>
+                <li>Support for additional files alongside the user's program</li>
+                <li>Support for custom user-defined compiler options, command-line arguments, and time and memory limits</li>
+                <li>Detailed execution results</li>
+                <li>Webhooks (HTTP callbacks)</li>
+            </ul>
+
+            <h2 id="get-started">Get Started</h2>
+            <p>Start with the FREE Basic Plan on <a href="https://rapidapi.com/judge0">RapidAPI</a> or host it yourself. Find detailed plans and pricing <a href="https://rapidapi.com/judge0">here</a>.</p>
+            <p><strong>Why use Judge0 on RapidAPI?</strong> Our infrastructure allows you to focus on building your product without worrying about maintaining and scaling Judge0.</p>
+            <p>If RapidAPI plans are not suitable, <a href="https://www.judge0.com/contact">contact us</a> to discuss further options.</p>
+
+            <h2 id="version">Version</h2>
+            <p>This documentation describes Judge0 CE v1.13.1.</p>
+            <p><strong>Date and Time Formats:</strong> ISO 8601 standard is used. Example: <code>2016-09-11T10:19:35Z</code></p>
+            <p><strong>License:</strong> Judge0 is licensed under the GNU General Public License v3.0.</p>
+
+            <h2 id="authentication">Authentication</h2>
+            <p>Administrators of Judge0 can configure it to require an authentication token (API key). If required, provide the <code>X-Auth-Token</code> header field in every API request.</p>
+            <h3>Authenticate</h3>
+            <p><strong>POST /authenticate</strong></p>
+            <p>Check if your authentication token is valid.</p>
+            <p><strong>Note:</strong></p>
+            <ul>
+                <li><code>X-Auth-Token</code> is the default header field name, but administrators may change it.</li>
+                <li>Contact the administrator of the Judge0 instance to obtain your authentication token.</li>
+            </ul>
+            <p><strong>Security Warning:</strong> Always send the authentication token through headers, not as a URI parameter.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>POST https://ce.judge0.com/authenticate</pre>
+
+            <h2 id="authorization">Authorization</h2>
+            <p>Some API calls require authorization. For example, listing all submissions on Judge0 requires authorization.</p>
+            <p><a href="https://www.judge0.com/authorize">Authorize</a></p>
+            <p>Check if your authorization token is valid. If authentication is enabled, you must also authenticate in this API call.</p>
+            <p><strong>Note:</strong></p>
+            <ul>
+                <li><code>X-Auth-User</code> is the default header field name, but administrators may change it.</li>
+                <li>Contact the administrator to obtain your authorization token.</li>
+            </ul>
+            <p><strong>Security Warning:</strong> Always send the authorization token through headers, not as a URI parameter.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>POST https://ce.judge0.com/authorize</pre>
+
+            <h2 id="submissions">Submissions</h2>
+            <p>Submissions are used to run arbitrary source code in one of the available programming languages with specified runtime constraints. A submission has 33 attributes, with attributes 1-20 used for creating submissions and attributes 21-33 providing detailed execution information.</p>
+            <h3>Submission Attributes</h3>
+            <table>
+                <tr><th>#</th><th>Name</th><th>Type</th><th>Unit</th><th>Description</th></tr>
+                <tr><td>1</td><td>source_code</td><td>text</td><td></td><td>Program's source code</td></tr>
+                <tr><td>2</td><td>language_id</td><td>integer</td><td></td><td>Language ID</td></tr>
+                <tr><td>3</td><td>compiler_options</td><td>string</td><td>max 512 chars</td><td>Compiler options</td></tr>
+                <tr><td>4</td><td>command_line_arguments</td><td>string</td><td>max 512 chars</td><td>Command line arguments</td></tr>
+                <tr><td>5</td><td>stdin</td><td>text</td><td></td><td>Input for program</td></tr>
+                <tr><td>6</td><td>expected_output</td><td>text</td><td></td><td>Expected output of program</td></tr>
+                <tr><td>7</td><td>cpu_time_limit</td><td>float</td><td>second</td><td>Default runtime limit for every program</td></tr>
+                <tr><td>21</td><td>stdout</td><td>text</td><td></td><td>Standard output</td></tr>
+                <tr><td>22</td><td>stderr</td><td>text</td><td></td><td>Standard error</td></tr>
+                <tr><td>23</td><td>compile_output</td><td>text</td><td></td><td>Compiler output after compilation</td></tr>
+                <tr><td>24</td><td>message</td><td>text</td><td></td><td>Message from Judge0 or isolate</td></tr>
+                <tr><td>25</td><td>exit_code</td><td>integer</td><td></td><td>Program's exit code</td></tr>
+                <tr><td>26</td><td>exit_signal</td><td>integer</td><td></td><td>Signal code received before exiting</td></tr>
+                <tr><td>27</td><td>status</td><td>object</td><td></td><td>Submission status</td></tr>
+                <tr><td>28</td><td>created_at</td><td>datetime</td><td></td><td>Date and time submission was created</td></tr>
+                <tr><td>29</td><td>finished_at</td><td>datetime</td><td></td><td>Date and time submission was processed</td></tr>
+                <tr><td>30</td><td>token</td><td>string</td><td></td><td>Unique submission token</td></tr>
+                <tr><td>31</td><td>time</td><td>float</td><td></td><td>Program's run time</td></tr>
+                <tr><td>32</td><td>wall_time</td><td>float</td><td></td><td>Program's wall time (greater or equal to time)</td></tr>
+            </table>
+
+            <h3>Single-File and Multi-File Programs</h3>
+            <p>Judge0 supports both single-file and multi-file programs in a sandboxed environment with specified resource limitations.</p>
+            <h4>Single-File Programs</h4>
+            <p>The simplest way to run a program with Judge0. Select a <code>language_id</code>, provide <code>source_code</code>, and Judge0 uses predefined compilation and execution scripts. You can set custom compiler flags, provide command-line arguments, and include <code>additional_files</code> (e.g., Python modules or C/C++ header files) available in the sandbox.</p>
+            <h4>Multi-File Programs</h4>
+            <p>Available since v1.10.0, multi-file programs allow custom compilation and execution scripts. Use language ID 89 ("Multi-file program") and send all program files via the <code>additional_files</code> attribute as a Base64-encoded zip archive. The <code>source_code</code> attribute cannot be used. Include <code>compile</code> and <code>run</code> Bash scripts in the zip's root to define compilation and execution steps.</p>
+            <p><strong>Example:</strong> For a multi-file C++ project using CMake, include a <code>compile</code> script for compilation and a <code>run</code> script for execution.</p>
+
+            <h3>Create a Submission</h3>
+            <p><strong>POST /submissions/{base64_encoded_wait}</strong></p>
+            <p>Creates a new submission that waits in a queue to be processed. Returns a submission token to check status.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>POST https://ce.judge0.com/submissions/?base64_encoded=false&wait=false</pre>
+            <p><strong>URI Parameters:</strong></p>
+            <ul>
+                <li><code>base64_encoded</code> (boolean, optional, default: false): Set to true to send Base64-encoded data.</li>
+                <li><code>wait</code> (boolean, optional, default: false): Set to true to get submission results immediately (if enabled).</li>
+            </ul>
+            <p><strong>Note:</strong> Using <code>wait=true</code> is not recommended as it does not scale well.</p>
+            <p><strong>Response Example:</strong></p>
+            <pre>
+{
+  "token": "d85cd024-1548-4165-96c7-7bc88673f194",
+  "base64_encoded": false,
+  "set_to_true": "stdout time memory etdrtoken compile output"
+}
+            </pre>
+
+            <h3>Get a Submission</h3>
+            <p><strong>GET /submissions/{?base64_encoded,fields,page,per_page}</strong></p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/submissions/?base64_encoded=false&fields=stdout,time,memory,stderr,token,compile_output&page=4&per_page=2</pre>
+
+            <h3>Delete a Submission</h3>
+            <p><strong>DELETE /submissions/{token}?fields=stdout,stderr,status,id,language_id</strong></p>
+            <p>Requires authorization. Deletion may be restricted by the Judge0 instance administrator.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>DELETE https://ce.judge0.com/submissions/d85cd024-1548-4165-96c7-7bc88673f194?fields=stdout,stderr,status,id,language_id</pre>
+            <p><strong>URI Parameters:</strong></p>
+            <ul>
+                <li><code>token</code> (string, required): Submission token obtained during creation.</li>
+                <li><code>fields</code> (string, optional): Desired attributes to return (e.g., stdout, stderr).</li>
+            </ul>
+
+            <h3>Submission Batch</h3>
+            <p><strong>POST /submissions/batch?{base64_encoded}</strong></p>
+            <p>Create multiple submissions at once.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>POST https://ce.judge0.com/submissions/batch?base64_encoded=false</pre>
+            <p><strong>URI Parameters:</strong></p>
+            <ul>
+                <li><code>base64_encoded</code> (boolean, optional, default: false): Set to true for Base64-encoded data.</li>
+            </ul>
+
+            <h3>Get a Submission Batch</h3>
+            <p><strong>GET /submissions/batch/{tokens,base64_encoded,fields}</strong></p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/submissions/batch?tokens=db54881d-bcf5-4c7b-a2e3-d33fe7e25de7,ecc52a9b-ea80-4400-ad50-4ab6cc3bb2a1,1b35ec3b-5776-48ef-b646-d5522bde2ccc&base64_encoded=false&fields=token,stdout,stderr,status,id,language_id</pre>
+            <p><strong>URI Parameters:</strong></p>
+            <ul>
+                <li><code>tokens</code> (string, required): Comma-separated submission tokens.</li>
+                <li><code>base64_encoded</code> (boolean, optional, default: false): Set to true for Base64-encoded data.</li>
+                <li><code>fields</code> (string, optional): Desired attributes to return.</li>
+            </ul>
+
+            <h3>Get a Language</h3>
+            <p><strong>GET /languages/{id}</strong></p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/languages/1</pre>
+
+            <h3>Get All Languages</h3>
+            <p><strong>GET /languages/all</strong></p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/languages/all</pre>
+
+            <h2 id="system-info">System Info</h2>
+            <p>Judge0 consists of two systems: web and worker. The web system processes submissions and may be hosted on different machines. This API returns information from the web system.</p>
+            <p><strong>GET /system_info</strong></p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/system_info</pre>
+            <p>Contact the Judge0 instance administrator to determine if web and worker systems are on the same host.</p>
+
+            <h2 id="configuration">Configuration Info</h2>
+            <p><strong>GET /config_info</strong></p>
+            <p>Provides detailed configuration information about the Judge0 instance, adjustable via the <code>judge0.conf</code> file.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/config_info</pre>
+            <p><strong>Configuration Variables:</strong></p>
+            <table>
+                <tr><th>#</th><th>Name</th><th>Type</th><th>Unit</th><th>Description</th></tr>
+                <tr><td>1</td><td>enable_wait_result</td><td>boolean</td><td></td><td>Enables synchronous submission results</td></tr>
+                <tr><td>2</td><td>enable_compiler_options</td><td>boolean</td><td></td><td>Enables custom compiler options</td></tr>
+                <tr><td>3</td><td>allowed_languages_for_compile_options</td><td>list of strings</td><td></td><td>Languages for which compiler options are allowed</td></tr>
+                <tr><td>4</td><td>max_cpu_time_limit</td><td>float</td><td>second</td><td>Maximum CPU time limit</td></tr>
+                <tr><td>5</td><td>max_cpu_extra_time</td><td>float</td><td>second</td><td>Maximum extra CPU time</td></tr>
+                <tr><td>6</td><td>max_wall_time_limit</td><td>float</td><td>second</td><td>Maximum wall time limit</td></tr>
+                <tr><td>7</td><td>max_memory_limit</td><td>integer</td><td>kilobyte</td><td>Maximum memory limit</td></tr>
+                <tr><td>8</td><td>max_stack_limit</td><td>integer</td><td>kilobyte</td><td>Maximum stack limit</td></tr>
+                <tr><td>9</td><td>max_processes_and_or_threads</td><td>integer</td><td></td><td>Maximum number of processes and threads</td></tr>
+            </table>
+            <p><strong>Example:</strong> The default <code>cpu_time_limit</code> is 2 seconds, but a user can set it to 5 seconds, subject to the <code>max_cpu_time_limit</code> constraint.</p>
+
+            <h2 id="license">License</h2>
+            <p><strong>GET /license</strong></p>
+            <p>Returns the license information for Judge0.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/license</pre>
+            <p><strong>Isolate Version:</strong></p>
+            <p><strong>GET /isolate</strong></p>
+            <p>Returns the result of <code>isolate --version</code>.</p>
+            <p><strong>Example URI:</strong></p>
+            <pre>GET https://ce.judge0.com/isolate</pre>
+        </div>
+    </div>
+</body>
+</html>
