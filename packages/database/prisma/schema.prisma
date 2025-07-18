@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  email       String       @unique
+  username    String       @unique
+  name        String
+  createdAt   DateTime     @default(now())
+  submissions Submission[]
+
+  @@map("users")
+}
+
+model Problem {
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  difficulty   Difficulty
+  constraints  String[]
+  examples     Example[]
+  testCases    TestCase[]
+  submissions  Submission[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@map("problems")
+}
+
+model TestCase {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  problemId String  @db.ObjectId
+  input     String
+  output    String
+  isHidden  Boolean @default(false)
+  problem   Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  @@map("testcases")
+}
+
+model Submission {
+  id         String           @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String           @db.ObjectId
+  problemId  String           @db.ObjectId
+  language   ProgrammingLanguage
+  code       String
+  status     SubmissionStatus
+  runtime    Int?
+  memory     Int?
+  createdAt  DateTime         @default(now())
+  user       User             @relation(fields: [userId], references: [id])
+  problem    Problem          @relation(fields: [problemId], references: [id])
+
+  @@map("submissions")
+}
+
+type Example {
+  input  String
+  output String
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum ProgrammingLanguage {
+  C
+  PYTHON
+  JAVASCRIPT
+  JAVA
+}
+
+enum SubmissionStatus {
+  PENDING
+  ACCEPTED
+  WRONG_ANSWER
+  TIME_LIMIT_EXCEEDED
+  RUNTIME_ERROR
+  COMPILATION_ERROR
+}
+
