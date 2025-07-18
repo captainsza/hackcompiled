@@ -7,7 +7,7 @@ import Link from "next/link";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CodeJudge - Online Coding Platform",
+  title: "CodeCompiled - Online Coding Platform",
   description: "Practice coding problems with Judge0 integration",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
               <div className="flex items-center">
                 <Link href="/" className="flex-shrink-0">
                   <span className="text-2xl font-bold text-gray-900">
-                    Code<span className="text-blue-600">Judge</span>
+                    Hack<span className="text-blue-600">Compiled</span>
                   </span>
                 </Link>
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

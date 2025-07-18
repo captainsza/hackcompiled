@@ -1,4 +1,4 @@
-import { PrismaClient } from 'database'
+import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server'
 
 const prisma = new PrismaClient()
@@ -35,10 +35,10 @@ export async function POST(request: Request) {
   try {
     const { problemId, language, code, userId } = await request.json()
 
-    // Ensure demo user exists
-    let demoUserId = userId || 'demo-user-id'
+    // Ensure demo user exists and get proper ObjectId
+    let demoUserId = userId
     
-    if (!userId) {
+    if (!userId || userId === 'demo-user') {
       const demoUser = await prisma.user.upsert({
         where: { email: 'demo@example.com' },
         update: {},
